@@ -21,6 +21,15 @@ const Queue = () => {
       }
       curr.next = node;
     },
+    recursiveEnqueue(queue, val) {
+      // Base case
+      if(queue.next === null){
+        queue.next = Node(val);
+        return;
+      }
+      // Recursive case
+      this.recursiveEnqueue(queue.next, val);
+    },
     dequeue() {
       if(this.queue === null){ return; }
       let head = this.queue;
@@ -43,5 +52,5 @@ q.enqueue(2);
 q.enqueue(9);
 q.print();
 console.log();
-q.dequeue();
+q.recursiveEnqueue(q.queue, 8);
 q.print();
